@@ -1,4 +1,11 @@
 import React from "react"
+/*
+1. make todo as a component
+2. route
+2.1 /create
+2.2 /list
+3.add css (tailwindcss)
+ */
 
 export default function App(){
   const [todos,setTodos] = React.useState(() => JSON.parse(localStorage.getItem("todos")) || [])
@@ -62,7 +69,6 @@ export default function App(){
 
       setTodos(updatedTodos)
   }
-
   function copyTodo(id){
     [...todos].map((todo) => {
 
