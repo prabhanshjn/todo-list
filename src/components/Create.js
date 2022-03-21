@@ -1,31 +1,26 @@
 import React from "react";
 
-export default function Create({todo,setTodo,todos,setTodos}){
+export default function Create({setNewTodo}){
+    const [todoText,setTodoText] = React.useState("")
+
     function handleSubmit(e){
         e.preventDefault()
 
-        if(todo === ""){
+        if(todoText === ""){
             alert("Empty Todo is Not Allowed")
 
         }else{
-            const newTodo = {
-                id: new Date().getTime(),
-                text: todo,
-                completed: false,
-                dateModified: new Date().toDateString()
-            }
-
-            setTodos([...todos].concat([newTodo]))
+           setNewTodo(todoText)
 
         }
 
 
-        setTodo("")
+        setTodoText("")
     }
     return(
         <>
             <form onSubmit={handleSubmit}>
-                <input type={"text"} value={todo} onChange={(e) => setTodo(e.target.value)}/>
+                <input type={"text"} value={todoText} onChange={(e) => setTodoText(e.target.value)}/>
                 <button className={"add-todo"} type={"submit"}>Add Todo</button>
             </form>
         </>

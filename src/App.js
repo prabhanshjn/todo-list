@@ -1,15 +1,30 @@
 import React from "react"
-import {Route,Routes} from "react-router-dom";
+import {Route,Switch} from "react-router-dom";
 import Create from "./components/Create";
 import List from "./components/List";
+import Menu from "./components/Menu";
+
 /*
 2. Router
-3.add css (tailwindcss)
- */
+3. Connect With Firebase
+4.add css (tailwindcss)
+*/
 
 export default function App(){
   const [todos,setTodos] = React.useState([])
-  const [todo, setTodo] = React.useState("")
+
+    function setNewTodo(todoText){
+
+      const newTodo = {
+          id: new Date().getTime(),
+          text: todoText,
+          completed: false,
+          dateModified: new Date().toDateString()
+      }
+
+      setTodos([...todos].concat([newTodo]))
+    }
+
 
 
 
@@ -81,34 +96,26 @@ export default function App(){
   }
 
   return(
+
       <div className={"todo"}>
-        <Create
-            todos = {todos}
-            setTodos={setTodos}
-            todo = {todo}
-            setTodo = {setTodo}
-        />
-        <List
-            todos = {todos}
-            setTodos={setTodos}
-        />
 
+          <Menu />
 
-        {/*<Routes>*/}
-        {/*  <Route path={"/"} element = {<Create*/}
-        {/*      todos = {todos}*/}
-        {/*      setTodos={setTodos}*/}
-        {/*      todo = {todo}*/}
-        {/*      setTodo = {setTodo}*/}
-        {/*  />} />*/}
+        <Switch>
+          <Route exact path={"/"} >
 
-        {/*  <Route path={"/list"} element = { <List*/}
-        {/*      todos = {todos}*/}
-        {/*      setTodos={setTodos}*/}
-        {/*      deleteTodo={deleteTodo}*/}
-        {/*  />} />*/}
+              <Create
+                  setNewTodo = {setNewTodo}
+              />
+          </Route>
 
-        {/*</Routes>*/}
+          <Route exact path={"/list"}>
+              <List
+                  todos = {todos}
+                  setTodos={setTodos}
+              />
+          </Route>
+        </Switch>
       </div>
   )
 }
