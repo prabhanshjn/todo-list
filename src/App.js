@@ -3,16 +3,14 @@ import {Route,Routes} from "react-router-dom";
 import Create from "./components/Create";
 import List from "./components/List";
 /*
+2. Router
 3.add css (tailwindcss)
  */
 
 export default function App(){
-  const [todos,setTodos] = React.useState(() => JSON.parse(localStorage.getItem("todos")) || [])
+  const [todos,setTodos] = React.useState([])
   const [todo, setTodo] = React.useState("")
 
-  React.useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos))
-  }, [todos])
 
 
     function handleSubmit(e){
@@ -84,21 +82,33 @@ export default function App(){
 
   return(
       <div className={"todo"}>
+        <Create
+            todos = {todos}
+            setTodos={setTodos}
+            todo = {todo}
+            setTodo = {setTodo}
+        />
+        <List
+            todos = {todos}
+            setTodos={setTodos}
+        />
 
-        <Routes>
-          <Route path={"/"} element = {<Create
-              todos = {todos}
-              setTodos={setTodos}
-              todo = {todo}
-              setTodo = {setTodo}
-          />} />
 
-          <Route path={"/list"} element = { <List
-              todos = {todos}
-              setTodos={setTodos}
-          />} />
+        {/*<Routes>*/}
+        {/*  <Route path={"/"} element = {<Create*/}
+        {/*      todos = {todos}*/}
+        {/*      setTodos={setTodos}*/}
+        {/*      todo = {todo}*/}
+        {/*      setTodo = {setTodo}*/}
+        {/*  />} />*/}
 
-        </Routes>
+        {/*  <Route path={"/list"} element = { <List*/}
+        {/*      todos = {todos}*/}
+        {/*      setTodos={setTodos}*/}
+        {/*      deleteTodo={deleteTodo}*/}
+        {/*  />} />*/}
+
+        {/*</Routes>*/}
       </div>
   )
 }
