@@ -21,7 +21,7 @@ export default function Create({setNewTodo}){
         <div className={"content-center px-10"}>
             <form className={"flex flex-row "} onSubmit={handleSubmit}>
                 <input className={"shadow mr-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} placeholder={"Add Your Todo"} type={"text"} value={todoText} onChange={(e) => setTodoText(e.target.value)}/>
-                <button className={"ml-auto flex-shrink-0 bg-sky-500 hover:bg-teal-700 border-sky-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"} type={"submit"}>Add Todo</button>
+                <button className={"ml-auto flex-shrink-0 hover:bg-gray-700 border-gray-500 hover:border-gray-700 hover:text-white text-md border-4 text-black py-1 px-2 rounded"} type={"submit"}>Add Todo</button>
             </form>
         </div>
     )

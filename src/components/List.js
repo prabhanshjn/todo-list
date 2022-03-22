@@ -60,7 +60,7 @@ export default function List({todos,setTodos}){
 
                     <div key={todo.id} className={"px-10 mb-8"}>
 
-                        <li>
+                        <li className={"text-xl"}>
 
                             <div className={"flex flex-row items-center justify-evenly"}>
                                 <div className={"mr-auto"} >
@@ -75,11 +75,11 @@ export default function List({todos,setTodos}){
                                 <div className={"self-stretch"}>
 
 
-                            <button  className={"mr-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"} onClick={() => deleteTodo(todo.id)}><img className={"w-6"}  src={"https://img.icons8.com/material-sharp/344/filled-trash.png"}/></button>
+                            <button  className={"mr-4 bg-transparent hover:bg-red-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"} onClick={() => deleteTodo(todo.id)}><img className={"w-6"}  src={"https://img.icons8.com/material-sharp/344/filled-trash.png"}/></button>
 
                                     {todo.id === editTodoId?
-                                        (<button className={"mr-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"} onClick={() => editTodoText===""? alert("Empty Message not allowed"): editTodo(todo.id)}><img className={"w-6"}  src={"https://img.icons8.com/ios-filled/344/save--v1.png"}/></button>) :
-                                        (<button className={"mr-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"}
+                                        (<button className={"mr-4 bg-transparent hover:bg-green-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"} onClick={() => editTodoText===""? alert("Empty Message not allowed"): editTodo(todo.id)}><img className={"w-6"}  src={"https://img.icons8.com/ios-filled/344/save--v1.png"}/></button>) :
+                                        (<button className={"mr-4 bg-transparent hover:bg-green-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"}
                                                  onClick={() => setEditTodoId(todo.id)}><img className={"w-6"}  src={"https://img.icons8.com/ios-filled/344/edit-file.png"}/></button>)}
 
                                     <button className={"bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"} onClick={() => copyTodo(todo.id)}><img className={"w-6"}  src={"https://img.icons8.com/ios-glyphs/344/copy.png"}/></button>
@@ -88,9 +88,11 @@ export default function List({todos,setTodos}){
                             </div>
 
 
-                            <span> {todo.dateModified}</span>
+                            <span className={"text-sm italic"}> {todo.dateModified}</span>
 
                         </li>
+
+                        <hr />
 
 
                     </div>)}
