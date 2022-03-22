@@ -1,31 +1,6 @@
-body {
-margin: 0;
-}
-.todo{
-  margin: auto;
-  width: 60%;
-  padding: 10px;
-}
+/*tailwind css utility classes */
 
-.completedTodo{
-  text-decoration: line-through;
-}
-
-.margin-buttons{
-  margin: 50px;
-}
-
-.add-todo{
-  margin-left: 20px;
-}
-
-.active_class{
-  margin: 0px 20px;
-  color: red;
-  border-bottom: 1px solid blue;
-}
-
-nav{
-  margin-bottom: 20px;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 

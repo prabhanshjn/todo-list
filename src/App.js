@@ -1,5 +1,6 @@
 import React from "react"
 import {Route,Switch} from "react-router-dom";
+import "./index.css"
 import Create from "./components/Create";
 import List from "./components/List";
 import Menu from "./components/Menu";
@@ -11,7 +12,14 @@ import Menu from "./components/Menu";
 */
 
 export default function App(){
+
+
   const [todos,setTodos] = React.useState([])
+    const [isLoaded,setIsLoaded] = React.useState(false)
+    const [firebaseTodos,setFirebaseTodos] = React.useState([])
+
+
+
 
     function setNewTodo(todoText){
 
@@ -97,7 +105,7 @@ export default function App(){
 
   return(
 
-      <div className={"todo"}>
+      <div className={"mx-auto"}>
 
           <Menu />
 
