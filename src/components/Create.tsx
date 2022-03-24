@@ -1,7 +1,10 @@
 import React from "react";
+import {NewTodo} from "../types";
+
+
 
 export default function Create({setNewTodo}){
-    const [todoText,setTodoText] = React.useState("")
+    const [todoText,setTodoText] = React.useState<string>("")
 
     function handleSubmit(e){
         e.preventDefault()
