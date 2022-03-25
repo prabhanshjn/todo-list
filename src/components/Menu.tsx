@@ -5,18 +5,16 @@ import {NavLink} from "react-router-dom"
 
 export default function Menu(){
     return(
-        <nav className={"p-12 mb-12 flex text-2xl justify-evenly font-sans bg-white shadow sm:items-baseline w-full"}>
-            <div className={""}>
-                <NavLink className={"py-2 px-4 border-b-4 border-blue-700"} exact activeClassName={"bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"} to = "/">Create</NavLink>
-
+        <div className="navbar bg-base-100 mb-12">
+            <div className="flex-1">
+                <NavLink to={"/"} className="btn btn-ghost normal-case text-xl">Todo List</NavLink>
             </div>
-            <div className={""}>
-                <NavLink exact className={"py-2 px-4 border-b-4 border-blue-700"} activeClassName={"bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"} to = "/list">List</NavLink>
-
-
+            <div className="flex-none">
+                <ul className="menu menu-horizontal p-0">
+                    <li><NavLink exact activeClassName={"menu menu-horizontal p-0"} to={"/"}>Add Todo</NavLink></li>
+                    <li><NavLink exact activeClassName={"menu menu-horizontal p-0"} to={"/list"}>View Todo</NavLink></li>
+                </ul>
             </div>
-
-
-        </nav>
+        </div>
     )
 }

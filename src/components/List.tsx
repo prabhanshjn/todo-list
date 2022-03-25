@@ -1,4 +1,5 @@
 import React from "react";
+// @ts-ignore
 import {NewTodo} from "../types";
 
 interface Props{
@@ -7,8 +8,8 @@ interface Props{
 }
 
 export default function List({todos,setTodos}: Props){
-    const [editTodoId, setEditTodoId] = React.useState(null)
-    const [editTodoText,setEditTodoText] = React.useState("")
+    const [editTodoId, setEditTodoId] = React.useState<any>(null)
+    const [editTodoText,setEditTodoText] = React.useState<string>("")
 
     function deleteTodo(id: number){
         const updatedTodo = [...todos].filter((todo) => id !== todo.id)
@@ -22,7 +23,7 @@ export default function List({todos,setTodos}: Props){
 
         const updatedTodo = [...todos].map((todo) => {
             if(todo.id === id){
-                todo.text = editTodoText;
+                todo.detail.text = editTodoText;
             }
             return todo
         })
@@ -49,7 +50,10 @@ export default function List({todos,setTodos}: Props){
             if(todo.id === id){
                 const newTodo = {
                     id: new Date().getTime(),
-                    text: todo.text,
+                    detail:{
+                        text: todo.detail.text,
+                        desc: todo.detail.text,
+                    },
                     completed: false,
                     dateModified: new Date().toDateString()
                 }
@@ -58,37 +62,47 @@ export default function List({todos,setTodos}: Props){
 
         })
     }
+    // @ts-ignore
     return(
         <>
-            <ol className={"list-decimal"}>
+
                 {todos.map((todo) =>
 
 
                     <div key={todo.id} className={"px-10 mb-8"}>
 
-                        <li className={"text-xl"}>
+
 
                             <div className={"flex flex-row items-center justify-evenly"}>
-                                <div className={"mr-auto"} >
+                                <input type="checkbox" className="checkbox mr-2" defaultChecked={false}  onClick={() => checkTodo(todo.id)}/>
 
+                                <div tabIndex="0" className="collapse mr-auto">
                                     {todo.id === editTodoId?
-                                        (<input placeholder={"Edit Todo"} className={"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} type={"text"} value={editTodoText} onChange={(e) => setEditTodoText(e.target.value)}/>) :
+                                        (<input placeholder={"Edit Todo"} className={"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} type={"text"} value={editTodoText} onChange={(e) => setEditTodoText(e.target.value)}/>):
 
-                                        (<h3 onClick={() => checkTodo(todo.id)} className={todo.completed? ("text-xl line-through"):("text-xl")}>{todo.text}</h3>)
-                                    }
+                                        (<div>
+
+                                        <h3 className={todo.completed? ("collapse-title text-xl font-medium line-through") : ("collapse-title text-xl font-medium")}>
+                                            {todo.detail.text}
+                                        </h3>
+                                        <div className="collapse-content">
+                                            <p>{todo.detail.desc}</p>
+                                        </div>
+                                        </div>)}
                                 </div>
+
 
                                 <div className={"self-stretch"}>
 
 
-                            <button  className={"mr-4 bg-transparent hover:bg-red-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"} onClick={() => deleteTodo(todo.id)}><img className={"w-6"}  src={"https://img.icons8.com/material-sharp/344/filled-trash.png"}/></button>
+                            <button  className={"mr-4 bg-transparent py-2 px-4 rounded"} onClick={() => deleteTodo(todo.id)}><img className={"w-6"}  src={"https://img.icons8.com/material-sharp/344/filled-trash.png"}/></button>
 
                                     {todo.id === editTodoId?
-                                        (<button className={"mr-4 bg-transparent hover:bg-green-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"} onClick={() => editTodoText===""? alert("Empty Message not allowed"): editTodo(todo.id)}><img className={"w-6"}  src={"https://img.icons8.com/ios-filled/344/save--v1.png"}/></button>) :
-                                        (<button className={"mr-4 bg-transparent hover:bg-green-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"}
+                                        (<button className={"mr-4 bg-transparent  py-2 px-4  rounded"} onClick={() => editTodoText===""? alert("Empty Message not allowed"): editTodo(todo.id)}><img className={"w-6"}  src={"https://img.icons8.com/ios-filled/344/save--v1.png"}/></button>) :
+                                        (<button className={"mr-4 bg-transparent   hover:text-white py-2 px-4  rounded"}
                                                  onClick={() => setEditTodoId(todo.id)}><img className={"w-6"}  src={"https://img.icons8.com/ios-filled/344/edit-file.png"}/></button>)}
 
-                                    <button className={"bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"} onClick={() => copyTodo(todo.id)}><img className={"w-6"}  src={"https://img.icons8.com/ios-glyphs/344/copy.png"}/></button>
+                                    <button className={"bg-transparent  py-2 px-4  rounded"} onClick={() => copyTodo(todo.id)}><img className={"w-6"}  src={"https://img.icons8.com/ios-glyphs/344/copy.png"}/></button>
                             </div>
 
                             </div>
@@ -96,13 +110,12 @@ export default function List({todos,setTodos}: Props){
 
                             <span className={"text-sm italic"}> {todo.dateModified}</span>
 
-                        </li>
 
                         <hr />
 
 
                     </div>)}
-            </ol>
+
         </>
     )
 }

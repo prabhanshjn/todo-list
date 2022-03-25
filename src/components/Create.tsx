@@ -3,8 +3,13 @@ import React, {FC}from "react";
 
 
 
-const Create = (setNewTodo:(todoText: string) => void) => {
+const Create: React.FC = ({setNewTodo} :any) => {
     const [todoText,setTodoText] = React.useState<string>("")
+    const [todoDesc, setTodoDesc] = React.useState<string>("")
+
+    const todoDetail = {
+
+    }
 
     function handleSubmit(e: React.FormEvent){
         e.preventDefault()
@@ -13,18 +18,24 @@ const Create = (setNewTodo:(todoText: string) => void) => {
             alert("Empty Todo is Not Allowed")
 
         }else{
-           setNewTodo(todoText)
+           setNewTodo(todoText, todoDesc)
 
         }
 
 
         setTodoText("")
+        setTodoDesc("")
     }
     return(
         <div className={"content-center px-10"}>
-            <form className={"flex flex-row "} onSubmit={handleSubmit}>
-                <input className={"shadow mr-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} placeholder={"Add Your Todo"} type={"text"} value={todoText} onChange={(e) => setTodoText(e.target.value)}/>
+
+            <form onSubmit={handleSubmit}>
+                <div className={"flex flex-row "}>
+                <input className={"input input-bordered w-full mr-8 mb-8"} placeholder={"Add Your Todo"} type={"text"} value={todoText} onChange={(e) => setTodoText(e.target.value)}/>
                 <button className={"btn"} type={"submit"}>Add Todo</button>
+                </div>
+                <textarea className="textarea textarea-bordered w-full" value={todoDesc} onChange={(e) => setTodoDesc(e.target.value)} placeholder="Description Of Todo"></textarea>
+
             </form>
         </div>
     )

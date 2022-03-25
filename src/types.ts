@@ -1,6 +1,9 @@
 export interface NewTodo {
     id: number;
-    text: string;
+    detail: {
+        text: string;
+        desc: string;
+    }
     completed: boolean;
     dateModified: string;
 
