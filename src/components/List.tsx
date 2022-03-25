@@ -1,17 +1,23 @@
 import React from "react";
+import {NewTodo} from "../types";
 
-export default function List({todos,setTodos}){
+interface Props{
+    todos: NewTodo[];
+    setTodos:  React.Dispatch<React.SetStateAction<NewTodo[]>>;
+}
+
+export default function List({todos,setTodos}: Props){
     const [editTodoId, setEditTodoId] = React.useState(null)
     const [editTodoText,setEditTodoText] = React.useState("")
 
-    function deleteTodo(id){
+    function deleteTodo(id: number){
         const updatedTodo = [...todos].filter((todo) => id !== todo.id)
 
         setTodos(updatedTodo)
     }
 
 
-    function editTodo(id){
+    function editTodo(id: number){
 
 
         const updatedTodo = [...todos].map((todo) => {
@@ -26,7 +32,7 @@ export default function List({todos,setTodos}){
         setEditTodoId(null)
     }
 
-    function checkTodo(id){
+    function checkTodo(id: number){
         const updatedTodos = [...todos].map((todo) => {
 
             if(todo.id === id){
@@ -37,7 +43,7 @@ export default function List({todos,setTodos}){
 
         setTodos(updatedTodos)
     }
-    function copyTodo(id){
+    function copyTodo(id: number){
         [...todos].map((todo) => {
 
             if(todo.id === id){

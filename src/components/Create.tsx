@@ -1,12 +1,12 @@
-import React from "react";
-import {NewTodo} from "../types";
+import React, {FC}from "react";
 
 
 
-export default function Create({setNewTodo}){
+
+const Create = (setNewTodo:(todoText: string) => void) => {
     const [todoText,setTodoText] = React.useState<string>("")
 
-    function handleSubmit(e){
+    function handleSubmit(e: React.FormEvent){
         e.preventDefault()
 
         if(todoText === ""){
@@ -29,3 +29,5 @@ export default function Create({setNewTodo}){
         </div>
     )
 }
+
+export default Create;

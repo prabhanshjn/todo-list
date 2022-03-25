@@ -1,6 +1,8 @@
 import React from "react";
 import {NavLink} from "react-router-dom"
 
+
+
 export default function Menu(){
     return(
         <nav className={"p-12 mb-12 flex text-2xl justify-evenly font-sans bg-white shadow sm:items-baseline w-full"}>
