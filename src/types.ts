@@ -7,5 +7,6 @@ export interface NewTodo {
     deadline: Date;
     completed: boolean;
     dateModified: string;
+    category: string;
 
 }

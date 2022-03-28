@@ -58,7 +58,8 @@ export default function List({todos,setTodos}: Props){
                     },
                     deadline: todo.deadline,
                     completed: false,
-                    dateModified: new Date().toDateString()
+                    dateModified: new Date().toDateString(),
+                    category: todo.category
                 }
                 setTodos([...todos].concat([newTodo]))
             }
@@ -131,10 +132,14 @@ export default function List({todos,setTodos}: Props){
                                         (<input placeholder={"Edit Todo"} className={"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"} type={"text"} value={editTodoText} onChange={(e) => setEditTodoText(e.target.value)}/>):
 
                                         (<div>
+                                            <div className={"flex flex-row content-center items-center"}>
+                                                <h3 className={todo.completed? ("collapse-title text-xl font-medium line-through") : ("collapse-title text-xl font-medium")}>
+                                                    {todo.detail.text}
+                                                </h3>
+                                                {todo.category !== "" && <span className="badge ml-12">{todo.category}</span>}
+                                            </div>
 
-                                        <h3 className={todo.completed? ("collapse-title text-xl font-medium line-through") : ("collapse-title text-xl font-medium")}>
-                                            {todo.detail.text}
-                                        </h3>
+
                                         <div className="collapse-content">
                                             <p className={"whitespace-pre-line"}>{todo.detail.desc}</p>
                                         </div>

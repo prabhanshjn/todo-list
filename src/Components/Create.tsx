@@ -12,6 +12,7 @@ const Create: ({setNewTodo}: Props) => JSX.Element = ({setNewTodo}: Props) => {
     const [todoText,setTodoText] = React.useState<string>("")
     const [todoDesc, setTodoDesc] = React.useState<string>("")
     const [dueDate,setDueDate] = React.useState<Date>(new Date())
+    const [category,setCategory] = React.useState<string>("")
 
 
     function handleSubmit(e: React.FormEvent){
@@ -22,7 +23,7 @@ const Create: ({setNewTodo}: Props) => JSX.Element = ({setNewTodo}: Props) => {
 
         }else{
            // @ts-ignore
-            setNewTodo(todoText, todoDesc, dueDate)
+            setNewTodo(todoText, todoDesc, dueDate,category)
 
         }
 
@@ -30,6 +31,7 @@ const Create: ({setNewTodo}: Props) => JSX.Element = ({setNewTodo}: Props) => {
         setTodoText("")
         setTodoDesc("")
         setDueDate(new Date())
+        setCategory("")
     }
     return(
         <div className={"content-center px-10"}>
@@ -40,13 +42,22 @@ const Create: ({setNewTodo}: Props) => JSX.Element = ({setNewTodo}: Props) => {
             />
 
             <form onSubmit={handleSubmit}>
-                <div className={"flex flex-row "}>
+                <div className={"flex flex-row"}>
                 <input className={"input input-bordered w-full mr-8 mb-8"} placeholder={"Add Your Todo"} type={"text"} value={todoText} onChange={(e) => setTodoText(e.target.value)}/>
                 <button className={"btn"} type={"submit"}>Add Todo</button>
                 </div>
                 <textarea className="textarea textarea-bordered w-full" value={todoDesc} onChange={(e) => setTodoDesc(e.target.value)} placeholder="Description Of Todo"></textarea>
 
             </form>
+            <div className="dropdown">
+                <label tabIndex={0} className="btn m-1">Category</label>
+                <ul tabIndex={0}  className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li onClick={() => setCategory("Study")}><a>Study</a></li>
+                    <li onClick={() => setCategory("Personal")}><a>Personal</a></li>
+                    <li onClick={() => setCategory("Finance")}><a>Finance</a></li>
+                    <li onClick={() => setCategory("Others")}><a>Others</a></li>
+                </ul>
+            </div>
         </div>
     )
 }
