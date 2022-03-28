@@ -1,15 +1,18 @@
 import React, {FC}from "react";
+// @ts-ignore
+import DateTimePicker from 'react-datetime-picker'
+
+interface Props{
+    setNewTodo: void;
+
+}
 
 
-
-
-const Create: React.FC = ({setNewTodo} :any) => {
+const Create: ({setNewTodo}: Props) => JSX.Element = ({setNewTodo}: Props) => {
     const [todoText,setTodoText] = React.useState<string>("")
     const [todoDesc, setTodoDesc] = React.useState<string>("")
+    const [dueDate,setDueDate] = React.useState<Date>(new Date())
 
-    const todoDetail = {
-
-    }
 
     function handleSubmit(e: React.FormEvent){
         e.preventDefault()
@@ -18,16 +21,23 @@ const Create: React.FC = ({setNewTodo} :any) => {
             alert("Empty Todo is Not Allowed")
 
         }else{
-           setNewTodo(todoText, todoDesc)
+           // @ts-ignore
+            setNewTodo(todoText, todoDesc, dueDate)
 
         }
 
 
         setTodoText("")
         setTodoDesc("")
+        setDueDate(new Date())
     }
     return(
         <div className={"content-center px-10"}>
+
+            <DateTimePicker
+            onChange = {setDueDate}
+            value = {dueDate}
+            />
 
             <form onSubmit={handleSubmit}>
                 <div className={"flex flex-row "}>
