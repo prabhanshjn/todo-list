@@ -1,0 +1,62 @@
+export const Data = {
+  name: "Prabhansh",
+  profile_pic:
+    "/Users/prabhanshjain/Desktop/webdev_learning/todo-list/todo/src/p-icon.png",
+  avail_balance: 20155.88,
+};
+export const Transaction_1 = [
+  {
+    name: "Job",
+    ref: "#1212",
+    status: "Pending",
+    trans: "CR",
+    amount: 1000.03,
+    date: "16:00, April 13,2022",
+    total: 21000,
+  },
+  {
+    name: "Self Checkout",
+    ref: "#1213",
+    status: "Completed",
+    trans: "DR",
+    amount: 5000.02,
+    date: "16:50, April 13,2022",
+    total: 16000,
+  },
+  {
+    name: "Nike Job",
+    ref: "#1214",
+    status: "Failed",
+    trans: "CR",
+    amount: 5000.01,
+    date: "20:00, April 15,2022",
+    total: 21000,
+  },
+  {
+    name: "Instagram Story",
+    ref: "#1215",
+    status: "Completed",
+    trans: "CR",
+    amount: 2000.01,
+    date: "11:58, April 15,2022",
+    total: 23000,
+  },
+  {
+    name: "Self Checkout",
+    ref: "#1216",
+    status: "Completed",
+    trans: "DR",
+    amount: 1300.01,
+    date: "13:58, April 15,2022",
+    total: 23000,
+  },
+  {
+    name: "Self Checkout",
+    ref: "#1217",
+    status: "Completed",
+    trans: "DR",
+    amount: 1000.11,
+    date: "14:58, April 15,2022",
+    total: 23000,
+  },
+];
